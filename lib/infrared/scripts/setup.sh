@@ -15,4 +15,8 @@ echo "Backup --> /etc/lirc/hardware_original.conf"
 echo "Bootkonfiguration wird angepasst"
 echo "/boot/config.txt"
 sed 's/#dtoverlay=lirc-rpi/dtoverlay=lirc-rpi/' /boot/config.txt > /boot/config.txt
+
+## Raspberry 3 Modul
 #dtoverlay=lirc-rpi,gpio_in_pin=23,gpio_out_pin=22
+## Raspberry 2 Modul
+#dtoverlay=lirc-rpi,gpio_in_pin=18,gpio_out_pin=17

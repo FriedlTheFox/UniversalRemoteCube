@@ -1,13 +1,20 @@
 #!/bin/bash
 #Sender testen
 
-REMOTE_CONTROLLER="TV_TOSHIBA"
+read -p "Name der Fernbedienung?" REMOTE_CONTROLLER
 
-echo "KEYs der Konfiguration ausgeben"
+echo "KEYs der Konfiguration lauten:"
 irsend LIST $REMOTE_CONTROLLER ""
 
-echo "KEY_0 einmalig betätigen"
-irsend SEND_ONCE $REMOTE_CONTROLLER KEY_0
+while true; do
+    read -p "Welchen KEY möchtest du testen?" KEY
+    echo $KEY " einmalig betätigen"
+    irsend SEND_ONCE $REMOTE_CONTROLLER $KEY
+    case $KEY in
+        [E]* ) echo;;
+        * ) echo "Abbrechen mit 'E'.";;
+    esac
+done
 
-echo "KEY_VOLUMEDOWN für 3 Sekunden drücken"
-irsend SEND_START $REMOTE_CONTROLLER KEY_VOLUMEDOWN; sleep 3; irsend SEND_STOP $REMOTE_CONTROLLER KEY_VOLUMEDOWN
+#echo "KEY_VOLUMEDOWN für 3 Sekunden drücken"
+#irsend SEND_START $REMOTE_CONTROLLER KEY_VOLUMEDOWN; sleep 3; irsend SEND_STOP $REMOTE_CONTROLLER KEY_VOLUMEDOWN
