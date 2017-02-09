@@ -8,7 +8,7 @@ while true; do
     read -p "KEY Namen listen? [y/n]" YN
     case $YN in
         [Yy]* ) irrecord --list-namespace;;
-        [Nn]* ) echo;;
+        [Nn]* ) echo; break;;
         * ) echo "Bitte 'y' oder 'n' eingeben.";;
     esac
 done
@@ -17,7 +17,7 @@ while true; do
     read -p "Soll ein Backup erstellt werden?" YN
     case $KEY in
       [Yy]* ) sudo mv /etc/lirc/lircd.conf /etc/lirc/lircd_backup.conf; echo "Backup erstellt.";;
-      [Yy]* ) echo "KEIN Backup erstellt.";;
+      [Nn]* ) echo "KEIN Backup erstellt."; break;;
         * ) echo "Bitte 'y' oder 'n' eingeben.";;
     esac
 done

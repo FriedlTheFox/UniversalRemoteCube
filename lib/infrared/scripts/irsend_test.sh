@@ -11,7 +11,7 @@ while true; do
     echo $KEY " einmalig betätigen"
     irsend SEND_ONCE $REMOTE_CONTROLLER $KEY
     case $KEY in
-        [E]* ) echo;;
+        [E]* ) echo; break;;
         * ) echo "Abbrechen mit 'E'.";;
     esac
 done
