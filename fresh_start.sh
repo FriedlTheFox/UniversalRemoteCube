@@ -1,12 +1,12 @@
-#!/bin/bash          
-#Installationsskript um eine arbeitsfähige 
-#Entwicklungsumgebung auf einem Raspberry Pi mit Raspian 
+#!/bin/bash
+#Installationsskript um eine arbeitsfähige
+#Entwicklungsumgebung auf einem Raspberry Pi mit Raspian
 #zur Verfügung zu stellen
 
 ################################################################
-PACKAGESSYSTEM="git"
+PACKAGESSYSTEM="git lirc"
 PACKAGESPYTHON="python python-dev python-pylirc"
-PACKAGESMISC=""  
+PACKAGESMISC=""
 
 PROJECTFOLDER="Projekte"
 GITHUBURL="https://github.com/FriedlTheFox/UniversalRemoteCube"
@@ -22,7 +22,7 @@ sudo apt-get install $PACKAGES $PACKAGESPYTHON $PACKAGESMISC
 
 echo "Projekt Ordner anlegen"
 cd $HOME
-mkdir -p $PROJECTFOLDER 
+mkdir -p $PROJECTFOLDER
 cd ./$PROJECTFOLDER
 
 echo "Hole GitHub Projekt"
