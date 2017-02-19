@@ -1,20 +1,31 @@
 #!/bin/bash
 #Sender testen
 
-read -p "Name der Fernbedienung?" REMOTE_CONTROLLER
+echo "lirc Service neu starten"
+sudo /etc/init.d/lirc restart
 
-echo "KEYs der Konfiguration lauten:"
-irsend LIST $REMOTE_CONTROLLER ""
+read -p "Wie heißt die Fernbedienung?" remoteController
 
 while true; do
-    read -p "Welchen KEY möchtest du testen?" KEY
-    echo $KEY " einmalig betätigen"
-    irsend SEND_ONCE $REMOTE_CONTROLLER $KEY
-    case $KEY in
-        [E]* ) echo; break;;
-        * ) echo "Abbrechen mit 'E'.";;
-    esac
+  read -p "KEYs der Konfiguration anzeigen?" answer
+  case "$answer" in
+    Yes|yes|Y|y) irsend LIST $remoteController ""
+      ;;
+    No|no|N|n|"") echo ""
+      ;;
+      *) echo "Parameter nicht erkannt"
+      ;;
+  esac
+  read -p "Welcher KEY soll gesendet werden?" key
+  case "$answer" in
+    "") break
+      ;;
+    *) irsend SEND_ONCE $remoteController $key
+      ;;
+  esac
+
+  echo ""
 done
 
 #echo "KEY_VOLUMEDOWN für 3 Sekunden drücken"
-#irsend SEND_START $REMOTE_CONTROLLER KEY_VOLUMEDOWN; sleep 3; irsend SEND_STOP $REMOTE_CONTROLLER KEY_VOLUMEDOWN
+#irsend SEND_START $remoteController KEY_VOLUMEDOWN; sleep 3; irsend SEND_STOP $remoteController KEY_VOLUMEDOWN
